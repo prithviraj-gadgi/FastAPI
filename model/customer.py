@@ -1,7 +1,7 @@
 import re
 from typing import Optional, List
 
-from pydantic import BaseModel, constr, EmailStr, conint, field_validator, Field
+from pydantic import BaseModel, EmailStr, field_validator, Field
 
 from model.card import CardIn, CardOut
 
