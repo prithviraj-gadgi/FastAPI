@@ -55,7 +55,7 @@ async def update_customer(current_user: Annotated[str, Depends(jwt_util.get_curr
     return updated
 
 # Delete Customer
-@app.delete("/customer/delete/{customer_id}", status_code=status.HTTP_204_NO_CONTENT)
+@app.delete("/customer/delete/{customer_id}", status_code=status.HTTP_200_OK)
 async def delete_customer(current_user: Annotated[str, Depends(jwt_util.get_current_user)], customer_id: str = Path(...)):
     customer = await customer_collection.find_one({"customerId": customer_id})
     if not customer:
