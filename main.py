@@ -60,7 +60,8 @@ async def delete_customer(current_user: Annotated[str, Depends(jwt_util.get_curr
     customer = await customer_collection.find_one({"customerId": customer_id})
     if not customer:
         raise HTTPException(status_code=404, detail=f"Customer not found with customerId: {customer_id}")
-    await customer_collection.delete_one({"customerId": customer_id})
+    if current_user == customer['customerId']:
+        await customer_collection.delete_one({"customerId": customer_id})
     return f"Customer deleted with customerId: {customer_id}"
 
 # Login Customer
